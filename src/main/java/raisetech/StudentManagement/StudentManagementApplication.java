@@ -1,5 +1,5 @@
 package raisetech.StudentManagement;
-//平田君とgitの練習中
+//平田君とgitの練習中　その２
 
 import ch.qos.logback.core.model.Model;
 import org.apache.ibatis.annotations.Mapper;
