@@ -1,8 +1,8 @@
 package raisetech.StudentManagement;
 
 import ch.qos.logback.core.model.Model;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+//import org.apache.ibatis.annotations.Mapper;
+//import org.apache.ibatis.annotations.Select;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.validation.BindingResult;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+//import org.apache.ibatis.annotations.Select;
 
 @SpringBootApplication
 @RestController
@@ -25,17 +27,15 @@ public class StudentManagementApplication {
 		return "Hello, World!";
 	}
 
-	package raisetech.student.management;
+//	package raisetech.student.management;
 
-	import java.util.List;
-	import org.apache.ibatis.annotations.mapper;
-	import org.apache.ibatis.annotations.Select;
 
-	@Mapper
-	public interface StudentRepositry {
-		@Select("SELECT * FROM students")
-		List<Student> serch();
-	}
+
+//	@Mapper
+	//public interface StudentRepositry {
+		//@Select("SELECT * FROM students")
+		//List<Student> serch();
+	//}
 
 //	private String name = "Enami Kouji";
 //	private String age = "37";
