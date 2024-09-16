@@ -1,8 +1,7 @@
 package raisetech.StudentManagement;
 
 import ch.qos.logback.core.model.Model;
-//import org.apache.ibatis.annotations.Mapper;
-//import org.apache.ibatis.annotations.Select;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.validation.BindingResult;
@@ -15,27 +14,25 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
-public class StudentManagementApplication {
+public class Application {
+
+
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(StudentManagementApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 	@GetMapping("/hello")
 	public String hello() {
-		return "Hello, World!";
+		return "hello, World";
 	}
 
-//	package raisetech.student.management;
 
 
 
-//	@Mapper
-	//public interface StudentRepositry {
-		//@Select("SELECT * FROM students")
-		//List<Student> serch();
-	//}
+
+
 
 //	private String name = "Enami Kouji";
 //	private String age = "37";
