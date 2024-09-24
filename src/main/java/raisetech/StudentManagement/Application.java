@@ -22,7 +22,7 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-
+//test
 
 	private String name = "Enami Kouji";
 private String age = "37";
