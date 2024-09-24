@@ -1,7 +1,8 @@
 package raisetech.StudentManagement;
 
 import ch.qos.logback.core.model.Model;
-
+//import org.apache.ibatis.annotations.Mapper;
+//import org.apache.ibatis.annotations.Select;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.validation.BindingResult;
@@ -21,45 +22,20 @@ public class StudentManagementApplication {
 		SpringApplication.run(StudentManagementApplication.class, args);
 	}
 
-	@GetMapping("/hello")
-	public String hello() {
-		return "Hello, World!";
+//test
+
+	private String name = "Enami Kouji";
+	private String age = "37";
+
+
+	@GetMapping("/studentInfo")
+	public String getStudentInfo() {
+		return name + " " + age + "歳";
 	}
 
-
-
-
-
-
-
-//	private String name = "Enami Kouji";
-//	private String age = "37";
-//
-//
-//	@GetMapping("/studentInfo")
-//	public String getStudentInfo() {
-//		return name + " " + age;
-//
-//	}
-
-
-//	@GetMapping("/newStudent")
-//	public String newStudent(Model model){
-//	model.addattribute(attributeName:"studentDetail, new StudentDetail"());
-//	return "registerStudent";
-//	}
-//
-//	@PostMapping("registStudent")
-//public String registeStudent(@ModelAttribute StudentDetil, BindingResultresult)　{
-//	if (result.hasErrors()){
-//		return "registerStudent";
-//		}
-//		}
-//
-//	//①新規受講生情報を登録する処理を実装する。
-
-//		//②コース情報も一緒に登録でいるようにする。コースは単体で良い。
-//return "redirect:/student";
-
+	@PostMapping("/studentInfo")
+	public void setStudentInfo(String name, String age){
+		this.name = name;
+		this.age = age;
+	}
 }
-
