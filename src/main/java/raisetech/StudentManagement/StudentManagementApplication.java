@@ -1,21 +1,19 @@
 package raisetech.StudentManagement;
 
-import ch.qos.logback.core.model.Model;
 //import org.apache.ibatis.annotations.Mapper;
 //import org.apache.ibatis.annotations.Select;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 //import org.apache.ibatis.annotations.Select;
 
 @SpringBootApplication
 @RestController
 public class StudentManagementApplication {
+
+	@Autowired
+	private StudentRepository repository;
 
 	public static void main(String[] args) {
 
@@ -24,18 +22,30 @@ public class StudentManagementApplication {
 
 //test
 
-	private String name = "Enami Kouji";
-	private String age = "37";
 
 
-	@GetMapping("/studentInfo")
-	public String getStudentInfo() {
-		return name + " " + age + "歳";
+
+	@GetMapping("/student")
+	public String getStudent() {
+		Student student = repository.searchByName("TanakaTarou");
+		return student.getName() + " " + student.getAge() + "歳";
 	}
 
-	@PostMapping("/studentInfo")
-	public void setStudentInfo(String name, String age){
-		this.name = name;
-		this.age = age;
+	@PostMapping("/student")
+	public void registerStudent(String name, int age){
+		repository.registerStudent(name, age);{
+
+		}
+
+		@PostMapping("/Name")
+				public void updateStudent(String name, int age){
+			repository.updateStudent(name, age);
+		}
+
+	}
+
+	@DeleteMapping("/student")
+	public void deleteStudent(String name){
+		repository.deleteStudent(name);
 	}
 }
