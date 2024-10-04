@@ -32,17 +32,18 @@ public class StudentManagementApplication {
 	}
 
 	@PostMapping("/student")
-	public void registerStudent(String name, int age){
-		repository.registerStudent(name, age);{
+	public void registerStudent(String name, int age) {
+		repository.registerStudent(name, age);
+		{
 
 		}
-
-		@PostMapping("/Name")
-				public void updateStudent(String name, int age){
-			repository.updateStudent(name, age);
-		}
-
 	}
+
+	@PatchMapping("/Student")
+			public void updateStudent(String name, int age){
+		repository.updateStudent(name, age);
+	}
+
 
 	@DeleteMapping("/student")
 	public void deleteStudent(String name){
