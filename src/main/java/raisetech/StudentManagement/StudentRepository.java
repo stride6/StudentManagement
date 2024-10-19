@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface StudentRepository {
 
-    @Select("SELECT * FROM student WHERE name = #｛name｝")
+    @Select("SELECT * FROM student WHERE name = #{name}")
     Student searchByName(String name);
 
     @Insert("INSERT student values(#｛name｝, #｛age｝)")
