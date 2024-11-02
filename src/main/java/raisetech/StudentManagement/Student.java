@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 
 @Getter
-@Setter
+
 public class Student {
 
     private String id;
