@@ -9,5 +9,5 @@ import java.util.List;
 public interface StudentRepository {
 
     @Select("SELECT * FROM students")
-    List<Student> search();
+List<Student> search();
 }
