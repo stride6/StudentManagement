@@ -2,8 +2,9 @@ package raisetech.StudentManagement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentsCourses;
-import raisetech.StudentManagement.repositry.StudentRepository;
+import raisetech.StudentManagement.data.StudentRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package raisetech.StudentManagement.repositry;
+package raisetech.StudentManagement.data;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
