@@ -1,16 +1,17 @@
 package raisetech.StudentManagement.data;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import raisetech.StudentManagement.data.StudentsCourses;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@Mapper
-public interface StudentRepository {
+@Getter
+@Setter
+public class StudentCourses {
 
-@Select("SELECT * FROM students")
-List<Students> search();
-
-@Select("SELECT * FROM students_courses")
-List<StudentsCourses> searchStudentsCourses();
+private String id;
+private String studentId;
+private String courseName;
+private LocalDateTime courseStartAt;
+private LocalDateTime courseEndAt;
 }
+
