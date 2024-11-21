@@ -24,7 +24,7 @@ this.service.searchStudentList();
 @GetMapping("/studentList")
 public List<StudentDetail> getStudentList() {
     List<Student> students = service.searchStudentList();
-    service.searchStudentCourseList();
+    List<StudentCourses> studentsCourses = service.searchStudentCourseList();
 
     List<StudentDetail> studentDetails = new ArrayList<>();
     for(Student student :students) {
