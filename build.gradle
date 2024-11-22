@@ -52,6 +52,4 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.34'
 }
 
-dependencies {
-implementation 'group:artifact:version'
-}
+

@@ -13,7 +13,7 @@ import java.util.List;
 public class StudentController {
 private StudentService service;
 
-    @Autowired
+   @Autowired
     public  StudentController(StudentService service){
         this.service = service;
     }
@@ -23,8 +23,8 @@ return service.searchStudentList();
 
     }
 @GetMapping("/studentsCourseList")
-public List<StudentsCourses> getStudentsCourseList() {
-    return service.searchStudentsCourses();
+public List<StudentCourses> getStudentsCourseList() {
+    return service.searchStudentsCourseList();
 }
 }
 

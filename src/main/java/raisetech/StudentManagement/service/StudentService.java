@@ -2,9 +2,10 @@ package raisetech.StudentManagement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import raisetech.StudentManagement.StudentCourses;
 import raisetech.StudentManagement.data.Student;
-import raisetech.StudentManagement.data.StudentRepository;
+import raisetech.StudentManagement.data.StudentCourses;
+import raisetech.StudentManagement.repositry.StudentRepository;
+
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class StudentService {
 this.repository = repository;
     }
     public List<Student> searchStudentList(){
-        return repositry.search();
+        return repository.search();
 
     }
 
