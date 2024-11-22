@@ -4,7 +4,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import raisetech.StudentManagement.data.StudentsCourses;
+import raisetech.StudentManagement.data.Student;
+import raisetech.StudentManagement.data.StudentCourses;
+
 
 
 
@@ -25,7 +27,7 @@ public interface StudentRepository {
 //    @Delete("DELETE FROM student WHERE name =#{name} ")
 //    void deleteStudent(String name);
     @Select("SELECT * FROM students_courses")
-    List<StudentsCourses> searchStudentsCourses();
+    List<StudentCourses> searchStudentsCourses();
     @Select("students")
     List<Student> search();
 }

@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourses;
-import raisetech.StudentManagement.domain.StudentDetail;
-import raisetech.StudentManagement.service.StudentService;
+//import raisetech.StudentManagement.domain.StudentDetail;
+import raisetech.StudentManagement.data.StudentService;
 
-import java.util.ArrayList;
+
+
 import java.util.List;
 
 @RestController
@@ -18,37 +19,17 @@ private StudentService service;
 
 @Autowired
 public  StudentController(StudentService service) {
-this.service.searchStudentList();
+this.service = service;
 }
 
 @GetMapping("/studentList")
-public List<StudentDetail> getStudentList() {
-    List<Student> students = service.searchStudentList();
-    List<StudentCourses> studentsCourses = service.searchStudentCourseList();
-
-    List<StudentDetail> studentDetails = new ArrayList<>();
-    for(Student student :students) {
-StudentDetail studentDetail = new StudentDetail();
-StudentDetail.setStudent(student);
-
-List<StudentCourses> convertStudentCourses = new ArrayList<>();
-for(StudentsCourses StudentsCourses : studentsCourses)　{
-            if(student.getId().equals(studentCourse.getStudentId())) {
-                convertStudentCourses.add(studentCourse);
-
-            }
-}
-        studentDetails.setStudentsCourses(convertStudentCourses);
-    }
-
-    return
-
-
+public List<Student> getStudentList() {
+return service.searchStudentList();
 }
 
 
 @GetMapping("/studentsCourseList")
-public List<StudentsCourses> getStudentsCourseList()　{
-return service.searchStudentCourseList();
+public List<StudentCourses> getStudentsCourseList(){
+return service.searchStudentList();
 }
 }
