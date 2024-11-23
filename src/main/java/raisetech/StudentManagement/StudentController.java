@@ -11,21 +11,23 @@ import java.util.List;
 
 @RestController
 public class StudentController {
-private StudentService service;
+    private StudentService service;
 
-   @Autowired
-    public  StudentController(StudentService service){
+    @Autowired
+    public StudentController(StudentService service) {
         this.service = service;
     }
+
     @GetMapping("/studentList")
     public List<Student> getStudentLIst() {
-return service.searchStudentList();
+        return service.searchStudentList();
 
     }
-@GetMapping("/studentsCourseList")
-public List<StudentCourses> getStudentsCourseList() {
-    return service.searchStudentsCourseList();
-}
+
+    @GetMapping("/studentsCourseList")
+    public List<StudentCourses> getStudentsCourseList() {
+        return service.searchStudentsCourseList();
+    }
 }
 
 
