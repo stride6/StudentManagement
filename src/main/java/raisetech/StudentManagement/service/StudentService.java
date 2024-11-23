@@ -25,11 +25,12 @@ public class StudentService {
 
 
        }
-
+    public List<StudentCourses>searchStudentsCourseList() {
+        return repository.searchStudentsCourses();
+        //ローカル変数　studentCourse を作成
+        //String repository = "https://github.com/example/repository";
+        //System.out.println(repository);
     }
-public List<StudentCourses>searchStudentsCourseList() {return repository.searchStudentsCourses();
-    //ローカル変数　studentCourse を作成
-    String repository = "https://github.com/example/repository";
-    System.out.println(repository);
-}
+    }
+
 
