@@ -17,35 +17,35 @@ import java.util.List;
 
 @RestController
 public class StudentController {
-private StudentService service;
-private Studentconverter converter;
+    private StudentService service;
+    private Studentconverter converter;
 
-@Autowired
-public  StudentController(StudentService service, Studentconverter converter) {
+    @Autowired
+    public StudentController(StudentService service, Studentconverter converter) {
 
-    this.service = service;
-    this.converter = converter;
-}
+        this.service = service;
+        this.converter = converter;
+    }
 
-@GetMapping("/studentList")
-public List<StudentDetail> getStudentList() {
+    @GetMapping("/studentList")
+    public List<StudentDetail> getStudentList() {
 //    public class MyClass{
 //        private int id;
 //    }
 //    public int getid(){
 //        return this.id;
 //    }
-  List<Student> students = service.searchStudentList();
-   List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
+        List<Student> students = service.searchStudentList();
+        List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
 
 //    List<StudentDetail> studentDetails = StudentDetail(students, studentsCourses);
 
 
-    return converter.convertStudentDetails(students,studentsCourses);
-}
+        return converter.convertStudentDetails(students, studentsCourses);
+    }
 
-@GetMapping("/studentsCourseList")
-public List<StudentCourses> getStudentsCourseList(){
-    return service.searchStudentsCourseList();
-}
+    @GetMapping("/studentsCourseList")
+    public List<StudentCourses> getStudentsCourseList() {
+        return service.searchStudentsCourseList();
+    }
 }

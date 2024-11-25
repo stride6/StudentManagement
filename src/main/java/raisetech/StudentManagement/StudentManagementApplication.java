@@ -1,7 +1,6 @@
 package raisetech.StudentManagement;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
@@ -13,10 +12,10 @@ import raisetech.StudentManagement.data.Student;
 
 @SpringBootApplication
 public class StudentManagementApplication {
-public static void main(String[]args){
+    public static void main(String[] args) {
 
-    SpringApplication.run(StudentManagementApplication.class, args);
-}
+        SpringApplication.run(StudentManagementApplication.class, args);
+    }
 }
 
 
