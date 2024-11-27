@@ -1,5 +1,16 @@
 package raisetech.StudentManagement;
 
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import lombok.Getter;
+import lombok.Setter;
+//import org.apache.ibatis.annotations.Select;
+
+
+@JsonAnyGetter
+@JsonAnySetter
+
 public class Student {
 
     private String name;
@@ -18,8 +29,6 @@ public class Student {
     }
 
     public void setAge(int age) {
-
         this.age = age;
     }
-
 }
