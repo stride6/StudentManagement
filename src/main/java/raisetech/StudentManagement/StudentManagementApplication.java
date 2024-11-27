@@ -1,4 +1,5 @@
 package raisetech.StudentManagement;
+//平田君とgitの練習中　その２
 
 //import org.apache.ibatis.annotations.Mapper;
 //import org.apache.ibatis.annotations.Select;
