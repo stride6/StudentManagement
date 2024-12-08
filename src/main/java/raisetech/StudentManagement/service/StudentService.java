@@ -6,7 +6,6 @@ import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourses;
 import raisetech.StudentManagement.repositry.StudentRepository;
 
-
 import java.util.List;
 
 
