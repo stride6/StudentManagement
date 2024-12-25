@@ -15,6 +15,7 @@ import raisetech.StudentManagement.domain.StudentDetail;
 import raisetech.StudentManagement.service.StudentService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -49,7 +50,9 @@ public class StudentController {
 
     @GetMapping("/newStudent")
     public String newStudent(Model model) {
-        model.addAttribute("studentDetail", new StudentDetail());
+        StudentDetail studentDetail = new StudentDetail();
+        studentDetail.setStudentCourses(Arrays.asList(new StudentCourses()));
+        model.addAttribute("studentDetail", studentDetail);
         return "registerStudent";
     }
 
@@ -58,7 +61,7 @@ public class StudentController {
         if (result.hasErrors()) {
             return "registerStudent";
         }
-service.registerStudent(studentDetail);
+        service.registerStudent(studentDetail);
 //System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
         return "redirect:/studentList";
     }

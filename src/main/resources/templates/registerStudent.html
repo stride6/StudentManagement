@@ -16,33 +16,37 @@
         <input type="text" id="KanaName" th:field="*{student.kanaName}" required/>
     </div>
 
-<div>
-<label for="nickname">ニックネーム:</label>
-<input type="text" id="nickname" th:field="*{student.nickname}" required/>
-<div>
-    <label for="email">メールアドレス:</label>
-    <input type="text" id="email"th:field="*{student.email}" required/>
-</div>
-<div>
-    <label for="area">地域:</label>
-    <input type="text" id="area" th:field="*{student.area}" required/>
-</div>
     <div>
-<label for="age">年齢:</label>
-<input type="text" id="age" th:field="*{student.age}" required/>
+        <label for="nickname">ニックネーム:</label>
+        <input type="text" id="nickname" th:field="*{student.nickname}" required/>
+        <div>
+            <label for="email">メールアドレス:</label>
+            <input type="text" id="email" th:field="*{student.email}" required/>
+        </div>
+        <div>
+            <label for="area">地域:</label>
+            <input type="text" id="area" th:field="*{student.area}" required/>
+        </div>
+        <div>
+            <label for="age">年齢:</label>
+            <input type="text" id="age" th:field="*{student.age}" required/>
+        </div>
+        <div>
+            <label for="sex">性別:</label>
+            <input type="text" id="sex" th:field="*{student.sex}" required/>
+        </div>
+        <div>
+            <label for="remark">備考:</label>
+            <input type="text" id="remark" th:field="*{student.remark}" required/>
+        </div>
+
+        <div th:each="course, stat:[studentCourses]">
+            <label for="courseName" th:for="studentCourse.[stat.index].courseName">受講コース: </label>
+            <input type="text" id="courseName" th:id="studentCourse.[stat.index].courseName"
+                   th:field="studentsCourses[stat.index].courseName"/>
+        </div>
+
     </div>
-    <div>
-    <label for="sex">性別:</label>
-    <input type="text" id="sex" th:field="*{student.sex}" required/>
-</div>
-<div>
-    <label for="remark">備考:</label>
-    <input type="text" id="remark" th:field="*{student.remark}" required/>
-</div>
-
-
-
-</div>
     <div></div>
     <div></div>
 
