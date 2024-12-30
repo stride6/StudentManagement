@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class Studentconverter {
+public class StudentConverter {
 
     public List<StudentDetail> convertStudentDetails(List<Student> students, List<StudentCourses> studentsCourses) {
         List<StudentDetail> studentDetails = new ArrayList<>();
