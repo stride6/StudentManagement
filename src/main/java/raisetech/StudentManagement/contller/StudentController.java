@@ -43,6 +43,7 @@ public class StudentController {
         model.addAttribute("studentList", converter.convertStudentDetails(students, studentsCourses));
         return "studentList";
     }
+
     @GetMapping("/student/{id}")
     public String getStudent(@PathVariable String id, Model model) {
         StudentDetail studentDetail = service.searchStudent(id);
@@ -54,7 +55,7 @@ public class StudentController {
     @GetMapping("/newStudent")
     public String newStudent(Model model) {
         StudentDetail studentDetail = new StudentDetail();
-       studentDetail.setStudentCourses(Arrays.asList(new StudentCourses()));
+        studentDetail.setStudentCourses(Arrays.asList(new StudentCourses()));
         model.addAttribute("studentDetail", studentDetail);
         return "registerStudent";
     }
