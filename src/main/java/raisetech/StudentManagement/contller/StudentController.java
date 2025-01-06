@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import raisetech.StudentManagement.contller.converter.StudentConverter;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourses;
@@ -19,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Controller
+@RestController
 public class StudentController {
     private StudentService service;
     private StudentConverter converter;
@@ -32,16 +29,14 @@ public class StudentController {
     }
 
     @GetMapping("/studentList")
-    public String getStudentList(Model model) {
-        StudentCourses data = new StudentCourses();
+    public List<StudentDetail> getStudentList() {
+        //StudentCourses data = new StudentCourses();
         List<Student> students = service.searchStudentList();
 //        List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
-        List<StudentCourses> studentsCourses = new ArrayList<>();
-        studentsCourses.add(data);
+        List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
+        //studentsCourses.add(data);
 //    List<StudentDetail> studentDetails = StudentDetail(students, studentsCourses);
-
-        model.addAttribute("studentList", converter.convertStudentDetails(students, studentsCourses));
-        return "studentList";
+        return converter.convertStudentDetails(students,studentsCourses);
     }
 
     @GetMapping("/student/{id}")
@@ -72,7 +67,7 @@ public class StudentController {
 
 
     @PostMapping("/updateStudent")
-    public String updateStudent(@ModelAttribute StudentDetail studentDetail, BindingResult result) {
+    public String updateStudent(@RequestBody StudentDetail studentDetail, BindingResult result) {
         if (result.hasErrors()) {
             return "updateStudent";
         }
