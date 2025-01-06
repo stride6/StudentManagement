@@ -39,9 +39,9 @@ public class StudentService {
     public void registerStudent(StudentDetail studentDetail) {
         repository.registerStudent(studentDetail.getStudent());
         for (StudentCourses studentCourses : studentDetail.getStudentCourses()) {
-       studentCourses.setStudentId(studentDetail.getStudent().getId());
-        studentCourses.setCourseStartAt(LocalDateTime.now());
-        studentCourses.setCourseEndAt(LocalDateTime.now().plusYears(1));
+            studentCourses.setStudentId(studentDetail.getStudent().getId());
+            studentCourses.setCourseStartAt(LocalDateTime.now());
+            studentCourses.setCourseEndAt(LocalDateTime.now().plusYears(1));
             repository.registerStudentsCourses(studentCourses);
         }
 
