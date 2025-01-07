@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import raisetech.StudentManagement.contller.converter.Studentconverter;
+import raisetech.StudentManagement.contller.converter.StudentConverter;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourses;
 import raisetech.StudentManagement.domain.StudentDetail;
@@ -21,10 +21,10 @@ import java.util.List;
 @Controller
 public class StudentController {
     private StudentService service;
-    private Studentconverter converter;
+    private StudentConverter converter;
 
     @Autowired
-    public StudentController(StudentService service, Studentconverter converter) {
+    public StudentController(StudentService service, StudentConverter converter) {
 
         this.service = service;
         this.converter = converter;
