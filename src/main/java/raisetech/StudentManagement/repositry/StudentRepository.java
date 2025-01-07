@@ -53,6 +53,6 @@ public interface StudentRepository {
             + "email = #{email}, area = #{area},age = #{age},sex = #{sex},remark = #{remark},is_deleted = #{isDeleted} WHERE id = #{id}")
     void updateStudent(Student student);
 
-    @Update("UPDATE students_courses SET course_name =#{courseName}) WHERE id = #{id}")
+    @Update("UPDATE students_courses SET course_name =#{courseName} WHERE id = #{id}")
     void updateStudentsCourses(StudentCourses studentCourses);
 }
