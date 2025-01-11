@@ -22,11 +22,11 @@ public interface StudentRepository {
 
     //    @Delete("DELETE FROM student WHERE name =#{name} ")
 //    void deleteStudent(String name);
-    @Select("SELECT * FROM students_courses")
+    @Select("SELECT * FROM students_courses ")
     List<StudentCourses> searchStudentsCourses();
 
     //    @Select("students")
-    @Select("SELECT * FROM students")
+    @Select("SELECT * FROM students where is_deleted is null")
     List<Student> search();
 
     @Select("SELECT * FROM students WHERE id = #{id}")
