@@ -31,13 +31,13 @@ public class StudentController {
 
     @GetMapping("/studentList")
     public List<StudentDetail> getStudentList() {
-       // StudentCourses data = new StudentCourses();
+        // StudentCourses data = new StudentCourses();
         List<Student> students = service.searchStudentList();
-       List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
-       // List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
+        List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
+        // List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
         // studentsCourses.add(data);
-   // List<StudentDetail> studentDetails = StudentDetail(students, studentsCourses);
-        return converter.convertStudentDetails(students,studentsCourses);
+        // List<StudentDetail> studentDetails = StudentDetail(students, studentsCourses);
+        return converter.convertStudentDetails(students, studentsCourses);
     }
 
     @GetMapping("/student/{id}")
