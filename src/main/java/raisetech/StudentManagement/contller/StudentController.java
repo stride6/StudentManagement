@@ -2,6 +2,7 @@ package raisetech.StudentManagement.contller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,12 +31,12 @@ public class StudentController {
 
     @GetMapping("/studentList")
     public List<StudentDetail> getStudentList() {
-        //StudentCourses data = new StudentCourses();
+       // StudentCourses data = new StudentCourses();
         List<Student> students = service.searchStudentList();
-//        List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
-        List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
-        //studentsCourses.add(data);
-//    List<StudentDetail> studentDetails = StudentDetail(students, studentsCourses);
+       List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
+       // List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
+        // studentsCourses.add(data);
+   // List<StudentDetail> studentDetails = StudentDetail(students, studentsCourses);
         return converter.convertStudentDetails(students,studentsCourses);
     }
 
@@ -67,14 +68,10 @@ public class StudentController {
 
 
     @PostMapping("/updateStudent")
-    public String updateStudent(@RequestBody StudentDetail studentDetail, BindingResult result) {
-        if (result.hasErrors()) {
-            return "updateStudent";
-        }
+    public ResponseEntity<String> updateStudent(@RequestBody StudentDetail studentDetail) {
+
         service.updateStudent(studentDetail);
 //System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
-        return "redirect:/studentList/";
+        return ResponseEntity.ok("更新処理が成功しました。");
     }
-
-
 }
