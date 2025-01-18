@@ -28,6 +28,10 @@ dependencies {
 	implementation 'org.apache.commons:commons-lang3:3.14.0'
 //Spring Boot
 
+	//Lombok
+	compileOnly 'org.projectlombok:lobmok'
+	annotationProcessor 'org.projectlombok:lombok'
+
 	//MySQLドライバ
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
