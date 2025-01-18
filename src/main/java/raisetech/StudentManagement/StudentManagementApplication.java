@@ -1,5 +1,4 @@
 package raisetech.StudentManagement;
-//平田君とgitの練習中　その２
 
 //import org.apache.ibatis.annotations.Mapper;
 //import org.apache.ibatis.annotations.Select;
@@ -20,13 +19,12 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
-public class Application {
+public class StudentManagementApplication {
 
-@Autowired
-private static StudentRepository repository;
+	@Autowired
+	private StudentRepository repository;
 
-public static void main(String[] args) {
-    SpringApplication.run(Application.class, args);
+	public static void main(String[] args) {
 
     @GetMapping("/studentList")
     public List<Student> getStudentList () {
@@ -34,7 +32,20 @@ public static void main(String[] args) {
     }
 }
 
+	@PostMapping("/student")
+	public void registerStudent(String name, int age) {
+		repository.registerStudent(name, age);
+		
+	}
+
+	@PatchMapping("/Student")
+			public void updateStudent(String name, int age){
+		repository.updateStudent(name, age);
+	}
+
+
+	@DeleteMapping("/student")
+	public void deleteStudent(String name){
+		repository.deleteStudent(name);
+	}
 }
-
-
-
