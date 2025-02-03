@@ -17,52 +17,49 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+  *受講生の検索や登録、更新などを行うREST　APIとして受け付けるControllerです。
+ */
 @RestController
 public class StudentController {
     private StudentService service;
-    private StudentConverter converter;
 
     @Autowired
-    public StudentController(StudentService service, StudentConverter converter) {
-
+    public StudentController(StudentService service) {
         this.service = service;
-        this.converter = converter;
+
     }
 
+    /**
+     * 受講生一覧検索です。
+     * 全件検索を行うので、条件指定は行いません。
+     *
+     * @return 受講生一覧(全件)
+     */
     @GetMapping("/studentList")
     public List<StudentDetail> getStudentList() {
         // StudentCourses data = new StudentCourses();
-        List<Student> students = service.searchStudentList();
-        List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
-        // List<StudentCourses> studentsCourses = service.searchStudentsCourseList();
         // studentsCourses.add(data);
-        // List<StudentDetail> studentDetails = StudentDetail(students, studentsCourses);
-        return converter.convertStudentDetails(students, studentsCourses);
+        return service.searchStudentList();
     }
 
+    /**
+     * 受講生検索です。
+     * IDに紐付く任意の受講生の情報を取得します。
+     *
+     * @param id　受講生ID
+     * @return 受講生
+     */
     @GetMapping("/student/{id}")
-    public String getStudent(@PathVariable String id) {
-        StudentDetail studentDetail = service.searchStudent(id);
-        return "updateStudent";
-    }
-
-
-    @GetMapping("/newStudent")
-    public String newStudent(Model model) {
-        StudentDetail studentDetail = new StudentDetail();
-        studentDetail.setStudentCourses(Arrays.asList(new StudentCourses()));
-        model.addAttribute("studentDetail", studentDetail);
-        return "registerStudent";
+    public StudentDetail getStudent(@PathVariable String id) {
+        return service.searchStudent(id);
     }
 
     @PostMapping("/registerStudent")
-    public String registerStudent(@ModelAttribute StudentDetail studentDetail, BindingResult result) {
-        if (result.hasErrors()) {
-            return "registerStudent";
-        }
-        service.registerStudent(studentDetail);
+    public ResponseEntity<StudentDetail> registerStudent(@RequestBody StudentDetail studentDetail) {
+   StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
 //System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
-        return "redirect:/studentList";
+        return ResponseEntity.ok(responseStudentDetail);
     }
 
 
