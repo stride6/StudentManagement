@@ -1,4 +1,4 @@
-package raisetech.StudentManagement.contller.converter;
+package raisetech.StudentManagement.controller.converter;
 
 
 import org.springframework.stereotype.Component;
@@ -32,7 +32,7 @@ public class StudentConverter {
             studentDetail.setStudent(student);
 
             List<StudentCourses> convertStudentCourses =  studentsCourses.stream()
-                    .filter(StudentCourse -> student.getId().equals(studentsCourses.getStudentId()))
+                    .filter(StudentCourse -> student.getId().equals(StudentCourse.getStudentId()))
                     .collect(Collectors.toList());
             {
                 {
