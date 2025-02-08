@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.service.StudentService;
@@ -20,5 +21,9 @@ public class StudentDetail {
     private List<StudentCourse> studentCourseList;
 
 
+@Valid
+    private Student student;
 
+    @Valid
+    private List<StudentCourse> studentCourseList;
 }
