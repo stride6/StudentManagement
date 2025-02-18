@@ -17,7 +17,8 @@ import java.util.List;
 
 public class StudentDetail {
     private Student student;
-    private List<StudentCourse> studentCourseList;
+   private List<StudentCourse> studentCourseList;
+
 
 
 

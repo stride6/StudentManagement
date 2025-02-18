@@ -34,8 +34,9 @@ public interface StudentRepository {
 
 
     //    @Select("students")
-    @Select("SELECT * FROM students")
-    List<Student> search();
+
+//    @Select("SELECT * FROM students")
+    List<Student>search();
 
     /**
      * 受講生の検索を行います。
@@ -43,7 +44,6 @@ public interface StudentRepository {
      * @param id　受講生ID
      * @return 受講生
      */
-    @Select("SELECT * FROM students WHERE id = #{id}")
     Student searchStudent(String id);
 
     /**
@@ -97,6 +97,6 @@ public interface StudentRepository {
      *
      * @param studentCourse　受講生コース情報
      */
-    @Update("UPDATE students_courses SET course_name =#{courseName}) WHERE id = #{id}")
+    @Update("UPDATE students_courses SET course_name =#{courseName} WHERE id = #{id}")
     void updateStudentCourse(StudentCourse studentCourse);
 }

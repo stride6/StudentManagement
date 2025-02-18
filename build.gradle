@@ -19,8 +19,11 @@ repositories {
 }
 
 dependencies {
+	// Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// 便利機能、ユーティリティ
 	implementation 'org.apache.commons:commons-lang3:3.14.0'
-//Spring Boot
+
 
 	//MySQLドライバ
 	runtimeOnly 'com.mysql:mysql-connector-j'
@@ -29,6 +32,7 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 //Thymeleaf
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//Spring Boot
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
