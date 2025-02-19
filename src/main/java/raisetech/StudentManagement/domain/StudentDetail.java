@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.service.StudentService;
-
+import jakarta.validation.Valid;
 import java.util.List;
 
 @Getter
@@ -16,10 +17,10 @@ import java.util.List;
 @AllArgsConstructor
 
 public class StudentDetail {
+
+    @Valid
     private Student student;
-   private List<StudentCourse> studentCourseList;
 
-
-
-
+    @Valid
+    private List<StudentCourse> studentCourseList;
 }
