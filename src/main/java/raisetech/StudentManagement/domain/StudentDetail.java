@@ -22,9 +22,5 @@ public class StudentDetail {
     private List<StudentCourse> studentCourseList;
 
 
-    @Valid
-    private Student students;
 
-    @Valid
-    private List<StudentCourse> studentsCourseList;
 }

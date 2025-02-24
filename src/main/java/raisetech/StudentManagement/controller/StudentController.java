@@ -1,6 +1,8 @@
 package raisetech.StudentManagement.controller;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,12 +18,12 @@ import java.util.List;
 @Validated
 @RestController
 public class StudentController {
+
     private StudentService service;
 
     @Autowired
     public StudentController(StudentService service) {
         this.service = service;
-
     }
 
     /**
@@ -45,7 +47,8 @@ public class StudentController {
      * @return 受講生
      */
     @GetMapping("/student/{id}")
-    public StudentDetail getStudent(@PathVariable String id) {
+    public StudentDetail getStudent(
+            @PathVariable @NotBlank @Pattern(regexp = "^\\d+$") String id) {
         return service.searchStudent(id);
     }
 
