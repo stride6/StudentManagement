@@ -22,5 +22,4 @@ public class StudentDetail {
     private List<StudentCourse> studentCourseList;
 
 
-
 }

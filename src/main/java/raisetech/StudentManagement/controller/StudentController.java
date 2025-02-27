@@ -38,14 +38,14 @@ public class StudentController {
     public List<StudentDetail> getStudentList() throws TestException {
         // StudentCourses data = new StudentCourses();
         // studentsCourses.add(data);
-       throw new TestException("現在のこのAPIは利用できません。URLは｢studentList｣ではなく｢students｣を利用してください。");
+        throw new TestException("現在のこのAPIは利用できません。URLは｢studentList｣ではなく｢students｣を利用してください。");
     }
 
     /**
      * 受講生詳細の検索です。
      * IDに紐付く任意の受講生の情報を取得します。
      *
-     * @param id　受講生ID
+     * @param id 　受講生ID
      * @return 受講生
      */
     @GetMapping("/student/{id}")
@@ -62,7 +62,7 @@ public class StudentController {
      */
     @PostMapping("/registerStudent")
     public ResponseEntity<StudentDetail> registerStudent(@RequestBody StudentDetail studentDetail) {
-   StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
+        StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
 //System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
         return ResponseEntity.ok(responseStudentDetail);
     }
@@ -70,7 +70,7 @@ public class StudentController {
     /**
      * 受講生詳細の更新を行います。キャンセルフラグの更新もここで行います。(論理削除)
      *
-     * @param studentDetail　受講生詳細
+     * @param studentDetail 　受講生詳細
      * @return　実行結果
      */
     @PutMapping("/updateStudent")
@@ -81,8 +81,8 @@ public class StudentController {
         return ResponseEntity.ok("更新処理が成功しました。");
     }
 
-  @ExceptionHandler(TestException.class)
- public ResponseEntity<String> handleTestException(TestException ex) {
-   return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    @ExceptionHandler(TestException.class)
+    public ResponseEntity<String> handleTestException(TestException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }
