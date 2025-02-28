@@ -14,4 +14,15 @@
         FROM students WHERE id = #{id}
     </select>
 
+    <!-- 受講生コース情報の全件検索 -->
+    <select id="searchStudentStudentCoursesList" resultType="raisetech.StudentManagement.data.Student">
+        SELECT *
+        FROM students_courses
+    </select>
+
+    <!-- 受講生IDに紐付く受講生コース情報の検索 -->
+    <select id="searchStudentStudentCourse" resultType="raisetech.StudentManagement.data.Student">
+        SELECT *
+        FROM students_courses　WHERE student_id = #{studentId}
+    </select>
 </mapper>
