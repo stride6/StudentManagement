@@ -23,6 +23,13 @@
     <!-- 受講生IDに紐付く受講生コース情報の検索 -->
     <select id="searchStudentStudentCourse" resultType="raisetech.StudentManagement.data.Student">
         SELECT *
-        FROM students_courses　WHERE student_id = #{studentId}
+        FROM students_courses WHERE student_id = #{studentId}
     </select>
+
+<!-- 受講生コース情報の新規登録 -->
+<insert id="registerStudentCourse" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO students_courses (student_id, course_name, course_end_at)
+    VALUES (#{studentId}, #{courseName}, #{courseEndAt})
+</insert>
+
 </mapper>
