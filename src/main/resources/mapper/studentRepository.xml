@@ -4,9 +4,9 @@
 
     <!-- 受講生の全件検索 -->
     <select id="search" resultType="raisetech.StudentManagement.data.Student">
-    SELECT *
+        SELECT *
         FROM students
-</select>
+    </select>
 
     <!-- 受講生の検索 -->
     <select id="searchStudent" resultType="raisetech.StudentManagement.data.Student">
