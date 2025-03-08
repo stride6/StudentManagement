@@ -26,10 +26,38 @@
         FROM students_courses WHERE student_id = #{studentId}
     </select>
 
+    <!-- 受講生情報を新規登録します。IDに関しては自動採番を行う -->
+    <insert id="registerStudent" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO students (name, kana_name, nickname, email, area, age, sex, remark, is_deleted)
+        VALUES (#{name}, #{kanaName}, #{nickname}, #{email}, #{area}, #{age}, #{sex}, #{remark}, false)
+    </insert>
+
+
     <!-- 受講生コース情報の新規登録 -->
     <insert id="registerStudentCourse" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO students_courses (student_id, course_name, course_end_at)
         VALUES (#{studentId}, #{courseName}, #{courseEndAt})
     </insert>
 
+    <!-- 受講生を更新します -->
+    <update id="updateStudent">
+        UPDATE students
+        SET name = #{name},
+        kana_name = #{kanaName},
+        nickname = #{nickname},
+        email = #{email},
+        area = #{area},
+        age = #{age},
+        sex = #{sex},
+        remark = #{remark},
+        is_deleted = #{isDeleted}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 受講生コース情報のコース名を更新します -->
+    <update id="updateStudentCourse">
+        UPDATE students_courses
+        SET course_name = #{courseName}
+        WHERE id = #{id}
+    </update>
 </mapper>
