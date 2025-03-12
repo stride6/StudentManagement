@@ -80,7 +80,7 @@ public class StudentController {
     public ResponseEntity<String> updateStudent(@RequestBody StudentDetail studentDetail) {
 
         service.updateStudent(studentDetail);
-//System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
+
         return ResponseEntity.ok("更新処理が成功しました。");
     }
 
