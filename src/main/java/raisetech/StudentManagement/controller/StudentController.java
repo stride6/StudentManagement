@@ -66,7 +66,7 @@ public class StudentController {
     @PostMapping("/registerStudent")
     public ResponseEntity<StudentDetail> registerStudent(@RequestBody StudentDetail studentDetail) {
         StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
-//System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
+
         return ResponseEntity.ok(responseStudentDetail);
     }
 
