@@ -2,6 +2,7 @@ package raisetech.StudentManagement.ExceptionHandler;
 
 public class TestException extends Exception {
 
+
     public TestException() {
         super();
     }
