@@ -29,13 +29,14 @@ public interface StudentRepository {
 
     //    @Delete("DELETE FROM student WHERE name =#{name} ")
 //    void deleteStudent(String name);
-    @Select("SELECT * FROM students_courses")
-    List<StudentCourse> searchStudentsCourses();
+//    @Select("SELECT * FROM students_courses")
+//    List<StudentCourse> searchStudentsCourses();
 
 
     //    @Select("students")
-    @Select("SELECT * FROM students")
-    List<Student> search();
+
+//    @Select("SELECT * FROM students")
+    List<Student>search();
 
     /**
      * 受講生の検索を行います。
@@ -43,7 +44,6 @@ public interface StudentRepository {
      * @param id　受講生ID
      * @return 受講生
      */
-    @Select("SELECT * FROM students WHERE id = #{id}")
     Student searchStudent(String id);
 
     /**
@@ -51,7 +51,6 @@ public interface StudentRepository {
      *
      * @return　受講生のコース情報(全件)
      */
-    @Select("SELECT * FROM students_courses")
     List<StudentCourse> searchStudentCoursesList();
 
     /**
@@ -60,8 +59,7 @@ public interface StudentRepository {
      * @param studentId　受講生ID
      * @return 受講生IDに紐付く受講生コース情報
      */
-    @Select("SELECT * FROM students_courses WHERE student_id = #{studentId}")
-    List<StudentCourse> searchStudentCourse(String studentId);
+        List<StudentCourse> searchStudentCourse(String studentId);
 
     /**
      * 受講生情報を新規登録します。IDに関しては自動採番を行う。
@@ -97,6 +95,6 @@ public interface StudentRepository {
      *
      * @param studentCourse　受講生コース情報
      */
-    @Update("UPDATE students_courses SET course_name =#{courseName}) WHERE id = #{id}")
+    @Update("UPDATE students_courses SET course_name =#{courseName} WHERE id = #{id}")
     void updateStudentCourse(StudentCourse studentCourse);
 }

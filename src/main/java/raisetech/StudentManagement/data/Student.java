@@ -12,10 +12,31 @@ import lombok.Setter;
 @Setter
 
 public class Student {
+@NotBlank
+@Pattern(regexp = "^\\d+$")
 
     @NotBlank
     @Pattern(regexp = "^\\d+$")
     private String id;
+
+
+@NotBlank
+    private String name;
+
+@NotBlank
+    private String kanaName;
+
+@NotBlank
+    private String nickname;
+
+@NotBlank
+@Email
+    private String email;
+@NotBlank
+    private String area;
+
+    private int age;
+@NotBlank
 
     @NotBlank
     private String name;
@@ -37,6 +58,7 @@ public class Student {
     private int age;
 
     @NotBlank
+
     private String sex;
 
     private String remark;

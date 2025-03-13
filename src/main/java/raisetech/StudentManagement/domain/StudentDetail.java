@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.service.StudentService;
-
+import jakarta.validation.Valid;
 import java.util.List;
 
 @Schema(description = "受講生詳細")
@@ -20,7 +20,12 @@ import java.util.List;
 @AllArgsConstructor
 
 public class StudentDetail {
+
+
+    @Valid
     private Student student;
+
+    @Valid
     private List<StudentCourse> studentCourseList;
 
 

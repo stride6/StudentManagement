@@ -36,10 +36,23 @@ public class StudentConverter {
                     .filter(StudentCourse -> student.getId().equals(studentCourse.getStudentId()))  // studentCourseの小文字化
                     .collect(Collectors.toList());
 
+
+
+
+
+
+            
+             
+
+
                 studentDetail.setStudentCourseList(convertStudentCourseList);
                 studentDetails.add(studentDetail);
 
+
+
+
             
+
         });
         return studentDetails;
     }
