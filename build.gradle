@@ -14,6 +14,12 @@ java {
 	}
 }
 
+configurations {
+	compileOnly{
+		extendsFrom annotationProcessor
+	}
+}
+
 repositories {
 	mavenCentral()
 }
@@ -21,6 +27,7 @@ repositories {
 dependencies {
 	// Validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+  
 	// 便利機能、ユーティリティ
 	implementation 'org.apache.commons:commons-lang3:3.14.0'
 
@@ -29,16 +36,20 @@ dependencies {
 
 	//MyBatis
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+  
 //Thymeleaf
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+  
 //Spring Boot
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+// Tomcatを提供ランタイムとして使用  
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+  //テスト
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 //	runtimeOnly 'com.mysql:mysql-connector-j'
-	// MyBatis
+// MyBatis
 //implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
@@ -48,8 +59,13 @@ dependencies {
 
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 
+
 	//Validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+//Validation
+	implementation	'org.springframework.boot:spring-boot-starter-validation'
 
 }
 

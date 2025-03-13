@@ -37,9 +37,18 @@ public class StudentConverter {
 
 
 
+
+            
+                
+
+
                 studentDetail.setStudentCourseList(convertStudentCourseList);
                 studentDetails.add(studentDetail);
 
+
+
+
+            
 
         });
         return studentDetails;
