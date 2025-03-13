@@ -9,6 +9,7 @@ import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.domain.StudentDetail;
 import raisetech.StudentManagement.repositry.StudentRepository;
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -71,28 +72,30 @@ public class StudentService {
     public StudentDetail registerStudent(StudentDetail studentDetail) {
         Student student = studentDetail.getStudent();
         repository.registerStudent(student);
-        List<StudentCourse> courses = studentDetail.getStudentCourseList();
-        for (int i = 0, coursesSize = courses.size(); i < coursesSize; i++) {
-            StudentCourse studentCourses = courses.get(i);
-            intStudentsCourse(studentDetail, studentCourses);
+        studentDetail.getStudentCourseList().forEach(studentCourses -> {
+            intiStudentCourse(studentCourses, student);
             repository.registerStudentCourse(studentCourses);
-        }
+        });
         return studentDetail;
+    }
+
+    private static void intiStudentCourse(StudentCourse studentCourses, Student student) {
+        studentCourses.setStudentId(student.getId());
+        studentCourses.setCourseStartAt(LocalDateTime.now());
+        studentCourses.setCourseEndAt(LocalDateTime.now().plusYears(1));
     }
 
     /**
      *受講生コース情報を登録する際の初期情報を設定する。
      *
-     * @param studentDetail　受講生
+     * @param student　受講生
      * @param studentCourses　受講生コース情報
      */
-    private static void intStudentsCourse(StudentDetail studentDetail, StudentCourse studentCourses) {
+    private static void intStudentsCourse(StudentCourse studentCourses,Student student) {
         LocalDateTime now = LocalDateTime.now();
-        studentCourses.setStudentId(studentDetail.getStudent().getId());
 
-
+        studentCourses.setStudentId(student.getId());
         studentCourses.setCourseStartAt(now);
-
         studentCourses.setCourseEndAt(now.plusYears(1));
     }
 

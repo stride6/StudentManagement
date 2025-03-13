@@ -34,13 +34,22 @@ public class StudentConverter {
             List<StudentCourse> convertStudentCourseList =  studentCourseList.stream()
                     .filter(StudentCourse -> student.getId().equals(StudentCourse.getStudentId()))
                     .collect(Collectors.toList());
+
+
+
+
             
                 
+
 
                 studentDetail.setStudentCourseList(convertStudentCourseList);
                 studentDetails.add(studentDetail);
 
+
+
+
             
+
         });
         return studentDetails;
     }

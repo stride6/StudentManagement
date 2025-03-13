@@ -1,6 +1,11 @@
 package raisetech.StudentManagement.controller;
 
 
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
+
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +66,13 @@ public class StudentController {
      * @return　実行結果
      */
     @PostMapping("/registerStudent")
+
+    public ResponseEntity<StudentDetail> registerStudent(@RequestBody  StudentDetail studentDetail) {
+   StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
+
     public ResponseEntity<StudentDetail> registerStudent(@RequestBody StudentDetail studentDetail) {
         StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
+
 //System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
         return ResponseEntity.ok(responseStudentDetail);
     }
