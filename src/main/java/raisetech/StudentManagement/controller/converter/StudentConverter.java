@@ -31,15 +31,15 @@ public class StudentConverter {
             StudentDetail studentDetail = new StudentDetail();
             studentDetail.setStudent(student);
 
+          // studentCourseList をフィルタリングして学生に対応するコースを取得
             List<StudentCourse> convertStudentCourseList =  studentCourseList.stream()
-                    .filter(StudentCourse -> student.getId().equals(StudentCourse.getStudentId()))
+                    .filter(StudentCourse -> student.getId().equals(studentCourse.getStudentId()))  // studentCourseの小文字化
                     .collect(Collectors.toList());
-            {
-               
+
                 studentDetail.setStudentCourseList(convertStudentCourseList);
                 studentDetails.add(studentDetail);
 
-            }
+            
         });
         return studentDetails;
     }
