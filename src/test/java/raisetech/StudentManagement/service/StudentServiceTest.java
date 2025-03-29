@@ -14,6 +14,7 @@ import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.domain.StudentDetail;
 import raisetech.StudentManagement.repositry.StudentRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,4 +52,19 @@ when(repository.searchStudentCoursesList()).thenReturn(studentCourseList);
     Mockito.verify(repository, Mockito.times(1)).searchStudentCoursesList();
     Mockito.verify(converter, Mockito.times(1)).convertStudentDetails(studentList,studentCourseList);
 }
+@Test
+void 受講生詳細の登録_初期化処理が行われること(){
+String id = "999";
+Student student = new Student();
+student.setId(id);
+StudentCourse studentCourse = new StudentCourse();
+
+sut.initStudentsCourse(studentCourse, student.getId());
+
+Assertions.assertEquals(999, studentCourse.getStudentId());
+Assertions.assertEquals(LocalDateTime.now().getHour().
+studentCourse.getCourseStartAt().getHour();
+    Assertions.assertEquals(LocalDateTime.now(),plusYears(1)).getYear;
+    studentCourse.getCourseEndAt().getYear();
+ }
 }
