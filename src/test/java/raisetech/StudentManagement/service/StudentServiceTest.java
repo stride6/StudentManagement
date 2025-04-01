@@ -70,12 +70,13 @@ when(repository.searchStudentCoursesList()).thenReturn(studentCourseList);
     }
 
 @Test
-void 受講生詳細の登録_リポジトリの処理が適切に呼び出せていること() {
+void 受講生の登録処理_リポジトリのメソッドが適切に呼び出されること() {
 Student student = new Student();
 StudentCourse studentCourse = new StudentCourse();
 List<StudentCourse> studentCourseList1 = List.of(studentCourse);
 
-sut.registerStudent(StudentDetail);
+sut.registerStudent(student);
+sut.registerStudentCourse(studentCourse);
 
 verify(repository, times(1)).registerStudent(student);
 verify(repository, times(1)).registerStudentCourse(studentCourse);
@@ -85,16 +86,14 @@ verify(repository, times(1)).registerStudentCourse(studentCourse);
 void 受講生詳細の登録_初期化処理が行われること() {
 String id = "999";
 Student student = new Student();
-Student.setId(id);
+student.setId(id);
 StudentCourse studentCourse = new StudentCourse();
 
 sut.initStudentcoursse(studentCourse, student.getId());
 
-Assertions.assertEquals("999", studentCourse.getStudentId());
-Assertions.assertEquals(LocalDateTime.now().getHour(),
-studentCourse.getCourseEndAt().getHour());
-Assertions.assertEquals(LocalDateTime.now().plusYears(1).getYear(),
-studentCourse.getCourseEndAt().getYear());
+assertEquals(id, studentCourse.getStudentId());
+assertEquals(LocalDateTime.now().getHour(), studentCourse.getCourseEndAt().getHour());
+assertEquals(LocalDateTime.now().plusYears(1).getYear(), studentCourse.getCourseEndAt());
     }
 @Test
 void 受講生詳細の更新_リポジトリの処理が適切に呼び出せていること(){
