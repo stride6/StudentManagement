@@ -39,7 +39,7 @@ class StudentServiceTest {
 
     @Test
     void 受講生詳細の一覧検索_リポジトリとコンバーターの処理が適切に呼び出せていること() {
-        ;
+
         List<Student> studentList = new ArrayList<>();
         List<StudentCourse> studentCourseList = new ArrayList<>();
         when(repository.search()).thenReturn(studentList);
@@ -89,7 +89,7 @@ class StudentServiceTest {
             student.setId(id);
             StudentCourse studentCourse = new StudentCourse();
 
-            sut.initStudentcoursse(studentCourse, student.getId());
+            sut.initStudentcourse(studentCourse, student.getId());
 
             assertEquals(id, studentCourse.getStudentId());
             assertEquals(LocalDateTime.now().getHour(), studentCourse.getCourseEndAt().getHour());
