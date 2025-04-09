@@ -45,9 +45,9 @@ class StudentServiceTest {
         sut.searchStudentList();
 
 
-        Mockito.verify(repository, Mockito.times(1)).search();
-        Mockito.verify(repository, Mockito.times(1)).searchStudentCoursesList();
-        Mockito.verify(converter, Mockito.times(1)).convertStudentDetails(studentList,studentCourseList);
+        verify(repository, Mockito.times(1)).search();
+        verify(repository, Mockito.times(1)).searchStudentCoursesList();
+       verify(converter, Mockito.times(1)).convertStudentDetails(studentList,studentCourseList);
     }
     @Test
     void 受講生詳細の登録_初期化処理が行われること() {
