@@ -62,22 +62,14 @@ public class StudentService {
         //System.out.println(repository);
 
     /**
-     *受講生と受講生コース情報を個別に登録し、受講生コース情報には受講生情報を紐づける値とコース開始日、コース終了日を設定します。
+     * 受講生と受講生コース情報を個別に登録し、受講生コース情報には受講生情報を紐づける値とコース開始日、コース終了日を設定します。
      *
-     * @param studentDetail　受講生詳細
+     * @param studentDetail 　受講生詳細
      * @return　登録情報を付与した受講生詳細
      */
     @Transactional
     public StudentDetail registerStudent(StudentDetail studentDetail) {
-        Student student = studentDetail.getStudent();
-        repository.registerStudent(student);
-        List<StudentCourse> courses = studentDetail.getStudentCourseList();
-        for (int i = 0, coursesSize = courses.size(); i < coursesSize; i++) {
-            StudentCourse studentCourses = courses.get(i);
-            intStudentsCourse(studentDetail, studentCourses);
-            repository.registerStudentCourse(studentCourses);
-        }
-        return studentDetail;
+        return null;
     }
 
     /**
@@ -109,4 +101,9 @@ public class StudentService {
 
     }
 
+    public void registerStudentCourse(StudentCourse studentCourse) {
+    }
+
+    public void initStudentsCourse(StudentCourse studentCourse, String id) {
+    }
 }
