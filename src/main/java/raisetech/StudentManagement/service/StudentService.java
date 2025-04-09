@@ -111,4 +111,10 @@ public class StudentService {
 
     public void initStudentcoursse(StudentCourse studentCourse, String id) {
     }
+
+    public void registerStudentCourse(StudentCourse studentCourse) {
+    }
+
+    public void initStudentsCourse(StudentCourse studentCourse, String id) {
+    }
 }
