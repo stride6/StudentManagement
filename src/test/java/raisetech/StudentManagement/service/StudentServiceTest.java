@@ -64,9 +64,13 @@ class StudentServiceTest {
             StudentDetail expected = new StudentDetail(student, new ArrayList<>());
             StudentDetail actual = sut.searchStudent(id);
 
-            verify(repository, times(1)).searchStudent(id);
+assertEquals(expected.getStudent().getId(), actual.getStudent().getId());
+assertEquals(expected.getStudentCourseList().size(), actual.getStudentCourseList().size());
+// 以下、必要に応じてフィールドごとに比較
+            
+           verify(repository, times(1)).searchStudent(id);
             verify(repository, times(1)).searchStudentCourse(id);
-            Assertions.assertEquals(expected.getStudent().getId(), actual.getStudent().getId());
+            //Assertions.assertEquals(expected.getStudent().getId(), actual.getStudent().getId());
         }
 
         @Test
@@ -75,12 +79,28 @@ class StudentServiceTest {
             StudentCourse studentCourse = new StudentCourse();
             List<StudentCourse> studentCourseList1 = List.of(studentCourse);
 
-            sut.registerStudent(student);
-            sut.registerStudentCourse(studentCourse);
+          @ Test
+void 受講生の登録処理_registerStudentが正しく呼び出されること() {
+    Student student = new Student();
+    StudentDetail studentDetail = new StudentDetail(student, new ArrayList<>());
+
+    sut.registerStudent(studentDetail);
+
+    verify(repository, times(1)).registerStudent(student);
+}
 
             verify(repository, times(1)).registerStudent(student);
             verify(repository, times(1)).registerStudentCourse(studentCourse);
         }
+
+@Test
+void 受講生のコース登録処理_registerStudentCourseが正しく呼び出されること() {
+    StudentCourse studentCourse = new StudentCourse();
+
+    sut.registerStudentCourse(studentCourse);
+
+    verify(repository, times(1)).registerStudentCourse(studentCourse);
+}
 
         @Test
         void 受講生詳細の登録_初期化処理が行われること () {
