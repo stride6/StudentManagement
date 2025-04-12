@@ -112,4 +112,6 @@ public class StudentService {
 
     }
 
+    public void initStudentcoursse(StudentCourse studentCourse, String id) {
+    }
 }
