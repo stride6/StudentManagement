@@ -53,6 +53,7 @@ when(repository.searchStudentCoursesList()).thenReturn(studentCourseList);
     Mockito.verify(repository, Mockito.times(1)).searchStudentCoursesList();
     Mockito.verify(converter, Mockito.times(1)).convertStudentDetails(studentList,studentCourseList);
 }
+ 
 @Test
 void 受講生詳細の登録_初期化処理が行われること() {
     String id = "999";
@@ -66,6 +67,7 @@ void 受講生詳細の登録_初期化処理が行われること() {
     assertEquals(LocalDateTime.now().getHour(), studentCourse.getCourseEndAt().getHour());
     assertEquals(LocalDateTime.now().plusYears(1).getYear(), studentCourse.getCourseEndAt().getYear());
 }
+ 
     @Test
     void 受講生詳細の登録_リポジトリの処理が適切に呼び出せていること() {
         String id = "999";
