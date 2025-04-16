@@ -35,8 +35,9 @@ class StudentServiceTest {
     void before() {
         sut = new StudentService(repository, converter);
     }
+
     @Test
-    void 受講生詳細の一覧検索_リポジトリとコンバーターの処理が適切に呼び出せていること(){
+    void 受講生詳細の一覧検索_リポジトリとコンバーターの処理が適切に呼び出せていること() {
         List<Student> studentList = new ArrayList<>();
         List<StudentCourse> studentCourseList = new ArrayList<>();
         when(repository.search()).thenReturn(studentList);
@@ -47,8 +48,9 @@ class StudentServiceTest {
 
         verify(repository, Mockito.times(1)).search();
         verify(repository, Mockito.times(1)).searchStudentCoursesList();
-       verify(converter, Mockito.times(1)).convertStudentDetails(studentList,studentCourseList);
+        verify(converter, Mockito.times(1)).convertStudentDetails(studentList, studentCourseList);
     }
+
     @Test
     void 受講生詳細の登録_初期化処理が行われること() {
         String id = "999";
@@ -62,6 +64,7 @@ class StudentServiceTest {
         assertEquals(LocalDateTime.now().getHour(), studentCourse.getCourseEndAt().getHour());
         assertEquals(LocalDateTime.now().plusYears(1).getYear(), studentCourse.getCourseEndAt().getYear());
     }
+
     @Test
     void 受講生詳細の登録_リポジトリの処理が適切に呼び出せていること() {
         String id = "999";
@@ -79,7 +82,7 @@ class StudentServiceTest {
     }
 
     @Test
-    void 受講生の登録処理_リポジトリのメソッドが適切に呼び出されること () {
+    void 受講生の登録処理_リポジトリのメソッドが適切に呼び出されること() {
         Student Ustudent = new Student();
         StudentCourse studentCourse = new StudentCourse();
         List<StudentCourse> studentCourseList1 = List.of(studentCourse);
@@ -92,7 +95,7 @@ class StudentServiceTest {
     }
 
     @Test
-    void 受講生詳細の更新_リポジトリの処理が適切に呼び出せていること () {
+    void 受講生詳細の更新_リポジトリの処理が適切に呼び出せていること() {
         Student Rstudent = new Student();
         StudentCourse studentCourse = new StudentCourse();
         List<StudentCourse> studentCourseList1 = List.of(studentCourse);
