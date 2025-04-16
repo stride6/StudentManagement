@@ -6,7 +6,12 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,27 +20,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.service.StudentService;
 
+import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import jakarta.validation.Validation;
-import jakarta.validation.ValidatorFactory;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import raisetech.StudentManagement.data.Student;
-import raisetech.StudentManagement.service.StudentService;
 
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @WebMvcTest(StudentController.class)
-@TestMethodOrder(MethodOrderer.MethodName.class)
     class StudentControllerTest{
         @Autowired
         private MockMvc mockMvc;
@@ -43,14 +39,28 @@ import raisetech.StudentManagement.service.StudentService;
         @MockBean
         private StudentService service;
 
-        @Test
-        void 受講生詳細の一覧検索が実行できて空のリストが返ってくること() throws Exception {
+        private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
+
+
+        @Test
+        void 受講生詳細の一覧検索が実行できて空のリストが返ってくること(String value) throws Exception {
+           System.out.println(value);
             mockMvc.perform(get("/studentList"))
                     .andExpect(status().isOk())
-                    .andExpect(content().json("{}"));
-verify(service, times(1)).searchStudentList();
+                    .andExpect(content().json("[]"));
+            verify(service, times(1)).searchStudentList();
         }
+
+    @Test
+    void 受講生詳細の一覧検索が実行できて空で返ってくること() throws Exception {
+String id = "999";
+        mockMvc.perform(get("/student/{id}",id))
+                .andExpect(status().isOk());
+
+        verify(service, times(1)).searchStudent(id);
+    }
+
         @Test
         void 受講生詳細の登録が実行できて空で返ってくること() throws Exception {
             //リクエストデータは適切に構築して入力チェックの検証も兼ねている。
@@ -58,28 +68,22 @@ verify(service, times(1)).searchStudentList();
             mockMvc.perform(post("/registerStudent").contentType(MediaType.APPLICATION_JSON).content(
                             """
                                      {
-                                         "student": {
-                                             "id": "7",
-                                             "name": "平田知基",
-                                             "kanaName": "ヒラタトモキ",
-                                             "nickname": "トキ",
-                                             "email": "test@example.com",
-                                             "area": "福岡",
-                                             "age": 28,
-                                             "sex": "男性",
-                                             "remark": "実家暮らし",
-                                             "deleted": false
-                                         },
-                                         "studentCourseList": [
-                                             {
-                                                 "id": "21",
-                                                 "studentId": "7",
-                                                 "courseName": "Javaコース",
-                                                 "courseStartAt": "2024-12-26T14:52:04",
-                                                 "courseEndAt": "2025-12-26T14:52:04"
-                                             }
-                                         ]
-                                     }    
+                                     "student": {
+                                         "name" : "平田知基",
+                                         "kanaName" : "ヒラタジン",
+                                      "nickname" : "トキ",
+                                      "email" : "test@example.com",
+                                      "area" : "福岡",
+                                      "age" : "17",
+                                      "sex" : "男性",
+                                      "remark" : "実家暮らし"
+                                     },
+                                     "studentCourseList" : [
+                                         {
+                                             "courseName" : "Javaコース"
+                                         }
+                                     ]
+                                     }
                                     """
                     ))
                     .andExpect(status().isOk());
@@ -113,7 +117,7 @@ verify(service, times(1)).searchStudentList();
                                                 "courseEndAt": "2025-12-26T14:52:04"
                                             }
                                         ]
-                                    }    
+                                    }
                                     """
                     ))
                     .andExpect(status().isOk());
@@ -122,14 +126,7 @@ verify(service, times(1)).searchStudentList();
         }
 
 
-        @Test
-        void 受講生詳細の一覧検索が実行できて空のリストが返ってくること() throws Exception {
 
-            mockMvc.perform(get("/studentList"))
-                    .andExpect(status().isOk())
-                    .andExpect(content().json("{}"));
-            verify(service, times(1)).searchStudentList();
-        }
 
         @Test
         void 受講生詳細の例外APIが実行できてステータスが400で返ってくること() throws Exception {

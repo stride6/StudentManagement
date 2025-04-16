@@ -1,0 +1,9 @@
+//mysql
+mysql -u root -p
+888gr11stpas5
+
+use studentmanagement;
+SELECT * FROM students;
+SELECT * FROM students_courses;
+
+

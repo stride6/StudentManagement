@@ -89,7 +89,7 @@ public interface StudentRepository {
      * @param student　受講生
      */
     @Update("UPDATE students SET name = #{name}, kana_name= #{kanaName}, nickname = #{nickname},"
-            + "email = #{email}, area = #{area},age = #{age},sex = #{sex},remark = #{remark},is_deleted = #{isDeleted} WHERE id = #{id}")
+            + "email = #{email}, area = #{area},age = #{age},sex = #{sex},remark = #{remark},is_deleted = false WHERE id = #{id}")
     void updateStudent(Student student);
 
     /**
@@ -97,6 +97,6 @@ public interface StudentRepository {
      *
      * @param studentCourse　受講生コース情報
      */
-    @Update("UPDATE students_courses SET course_name =#{courseName}) WHERE id = #{id}")
+    @Update("UPDATE students_courses SET course_name =#{courseName} WHERE id = #{id}")
     void updateStudentCourse(StudentCourse studentCourse);
 }
