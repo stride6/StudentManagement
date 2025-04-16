@@ -4,7 +4,9 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -33,6 +35,7 @@ import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.service.StudentService;
 
 @WebMvcTest(StudentController.class)
+@TestMethodOrder(MethodOrderer.MethodName.class)
     class StudentControllerTest{
         @Autowired
         private MockMvc mockMvc;
