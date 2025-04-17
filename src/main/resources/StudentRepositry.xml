@@ -60,4 +60,5 @@
         SET course_name = #{courseName}
         WHERE id = #{id}
     </update>
-</mapper>
+
+    </mapper>

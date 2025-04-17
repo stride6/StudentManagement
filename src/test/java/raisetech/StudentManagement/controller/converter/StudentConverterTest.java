@@ -9,7 +9,8 @@ import raisetech.StudentManagement.domain.StudentDetail;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class StudentConverterTest {
 
@@ -22,16 +23,7 @@ private StudentConverter sut;
 
 @Test
     void 受講生のリストと受講生コース情報のリストを渡して受講生詳細のリストが作成できること() {
-    Student student = new Student();
-    student.setId("7");
-    student.setName("平田知基");
-    student.setKanaName("ヒラタトモキ");
-    student.setNickname("ヒラタ");
-    student.setEmail("test@example.com");
-    student.setArea("福岡");
-    student.setSex("男性");
-    student.setRemark("");
-    student.setDeleted(false);
+    Student student1 = createStudent();
 
     StudentCourse studentCourse = new StudentCourse();
     studentCourse.setId("7");
@@ -40,9 +32,46 @@ studentCourse.setCourseName("Javaコース");
 studentCourse.setCourseStartAt(LocalDateTime.now());
 studentCourse.setCourseEndAt(LocalDateTime.now().plusYears(1));
 
-    List<Student> studentList = List.of(student);
+    List<Student> studentList = List.of(student1);
     List<StudentCourse> studentCourseList = List.of(studentCourse);
 
     List<StudentDetail> actual = sut.convertStudentDetails(studentList, studentCourseList);
+
+assertThat(actual.get(0).getStudent()).isEqualTo(student1);
+assertThat(actual.get(0).getStudentCourseList()).isEqualTo(studentCourseList);
 }
+
+    private static Student createStudent(){
+    Student student = new Student();
+    student.setId("7");
+        student.setName("平田知基");
+        student.setKanaName("ヒラタトモキ");
+        student.setNickname("ヒラタ");
+        student.setEmail("test@example.com");
+        student.setArea("福岡");
+        student.setSex("男性");
+        student.setRemark("");
+        student.setDeleted(false);
+        return student;
+    }
+
+@Test
+    void 受講生のリストと受講生コース情報のリストを渡した時に紐付かない受講生コース情報は除外されること(){
+        Student student1 = createStudent();
+        StudentCourse studentCourse = new StudentCourse();
+        studentCourse.setId("7");
+        studentCourse.setStudentId("2");
+        studentCourse.setCourseName("Javaコース");
+        studentCourse.setCourseStartAt(LocalDateTime.now());
+        studentCourse.setCourseEndAt(LocalDateTime.now().plusYears(1));
+
+        List<Student> studentList = List.of(student1);
+        List<StudentCourse> studentCourseList = List.of(studentCourse);
+
+        List<StudentDetail> actual = sut.convertStudentDetails(studentList, studentCourseList);
+
+        assertThat(actual.get(0).getStudent()).isEqualTo(student1);
+        assertThat(actual.get(0).getStudentCourseList()).isEmpty();
+    }
+
 }
