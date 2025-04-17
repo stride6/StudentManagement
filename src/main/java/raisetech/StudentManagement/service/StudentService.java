@@ -36,9 +36,9 @@ public class StudentService {
      * @return　受講生詳細一覧(全件)
      */
     public List<StudentDetail> searchStudentList() {
-      List<Student> studentList = repository.search();
+        List<Student> studentList = repository.search();
         List<StudentCourse> studentsCoursesList = repository.searchStudentCoursesList();
-        return converter.convertStudentDetails(studentList,studentsCoursesList);
+        return converter.convertStudentDetails(studentList, studentsCoursesList);
 
 
     }
@@ -47,24 +47,24 @@ public class StudentService {
      * 受講生詳細検索です。
      * IDに紐付く受講生情報を取得したあと、その受講生に紐付く受講生コース情報を取得して設定します。
      *
-     * @param id　受講生ID
+     * @param id 　受講生ID
      * @return 受講生詳細
      */
     public StudentDetail searchStudent(String id) {
         Student student = repository.searchStudent(id);
         List<StudentCourse> studentCourse = repository.searchStudentCourse(student.getId());
-        return new StudentDetail(student,studentCourse);
+        return new StudentDetail(student, studentCourse);
     }
 
 
-        //ローカル変数　studentCourse を作成
-        //String repository = "https://github.com/example/repository";
-        //System.out.println(repository);
+    //ローカル変数　studentCourse を作成
+    //String repository = "https://github.com/example/repository";
+    //System.out.println(repository);
 
     /**
-     *受講生と受講生コース情報を個別に登録し、受講生コース情報には受講生情報を紐づける値とコース開始日、コース終了日を設定します。
+     * 受講生と受講生コース情報を個別に登録し、受講生コース情報には受講生情報を紐づける値とコース開始日、コース終了日を設定します。
      *
-     * @param studentDetail　受講生詳細
+     * @param studentDetail 　受講生詳細
      * @return　登録情報を付与した受講生詳細
      */
     @Transactional
@@ -81,10 +81,10 @@ public class StudentService {
     }
 
     /**
-     *受講生コース情報を登録する際の初期情報を設定する。
+     * 受講生コース情報を登録する際の初期情報を設定する。
      *
-     * @param studentDetail　受講生
-     * @param studentCourses　受講生コース情報
+     * @param studentDetail  　受講生
+     * @param studentCourses 　受講生コース情報
      */
     private static void intStudentsCourse(StudentDetail studentDetail, StudentCourse studentCourses) {
         LocalDateTime now = LocalDateTime.now();
@@ -99,7 +99,7 @@ public class StudentService {
     /**
      * 受講生詳細の更新を行います。受講生と受講生コース情報をそれぞれ更新します。
      *
-     * @param studentDetail　受講生詳細
+     * @param studentDetail 　受講生詳細
      */
     @Transactional
     public void updateStudent(StudentDetail studentDetail) {
