@@ -36,8 +36,10 @@ class StudentServiceTest {
         sut = new StudentService(repository, converter);
     }
 
+
     @Test
     void 受講生詳細の一覧検索_リポジトリとコンバーターの処理が適切に呼び出せていること() {
+        ;
         List<Student> studentList = new ArrayList<>();
         List<StudentCourse> studentCourseList = new ArrayList<>();
         when(repository.search()).thenReturn(studentList);
@@ -76,10 +78,10 @@ class StudentServiceTest {
         StudentDetail expected = new StudentDetail(student, new ArrayList<>());
         StudentDetail actual = sut.searchStudent(id);
 
-        verify(repository, times(1)).searchStudent(id);
-        verify(repository, times(1)).searchStudentCourse(id);
-        Assertions.assertEquals(expected.getStudent().getId(), actual.getStudent().getId());
-    }
+            verify(repository, times(1)).searchStudent(id);
+            verify(repository, times(1)).searchStudentCourse(id);
+            Assertions.assertEquals(expected.getStudent().getId(), actual.getStudent().getId());
+        }
 
     @Test
     void 受講生の登録処理_リポジトリのメソッドが適切に呼び出されること() {
@@ -87,12 +89,21 @@ class StudentServiceTest {
         StudentCourse studentCourse = new StudentCourse();
         List<StudentCourse> studentCourseList1 = List.of(studentCourse);
 
-        sut.registerStudent(new StudentDetail());
-        sut.registerStudentCourse(studentCourse);
+            sut.registerStudent(student);
+            sut.registerStudentCourse(studentCourse);
 
-        verify(repository, times(1)).registerStudent(Ustudent);
-        verify(repository, times(1)).registerStudentCourse(studentCourse);
-    }
+            verify(repository, times(1)).registerStudent(student);
+            verify(repository, times(1)).registerStudentCourse(studentCourse);
+        }
+
+@Test
+void 受講生のコース登録処理_registerStudentCourseが正しく呼び出されること() {
+    StudentCourse studentCourse = new StudentCourse();
+
+    sut.registerStudentCourse(studentCourse);
+
+    verify(repository, times(1)).registerStudentCourse(studentCourse);
+}
 
     @Test
     void 受講生詳細の更新_リポジトリの処理が適切に呼び出せていること() {
@@ -101,11 +112,9 @@ class StudentServiceTest {
         List<StudentCourse> studentCourseList1 = List.of(studentCourse);
         StudentDetail studentDetail = new StudentDetail(Rstudent, studentCourseList1);
 
-        sut.updateStudent(studentDetail);
+            sut.updateStudent(studentDetail);
 
         verify(repository, times(1)).updateStudent(Rstudent);
         verify(repository, times(1)).registerStudentCourse(studentCourse);
     }
-
-
 }
