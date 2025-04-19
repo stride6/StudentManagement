@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.service.StudentService;
 
@@ -17,6 +18,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -111,13 +113,21 @@ class StudentControllerTest {
 
     @Test
     void 受講生詳細の一覧検索が実行できて空のリストが返ってくること() throws Exception {
+
         mockMvc.perform(get("/studentList"))
                 .andExpect(status().isOk());
 
         verify(service, times(1)).searchStudentList();
     }
 
+    @Test
+    void studentListAPIが使用不可メッセージと400エラーを返すこと() throws Exception {
+        mockMvc.perform(get("/studentList"))
+                .andExpect(status().isBadRequest())
+                .andExpect((ResultMatcher) content().string("現在のこのAPIは利用できません。URLは｢studentList｣ではなく｢students｣を利用してください。"));
+    }
 
+    
     @Test
     void 受講生詳細の受講生で適切な値を入力したときに入力チェックに異常が発生しないこと() {
         Student student = new Student();
