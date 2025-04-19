@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.service.StudentService;
 
-import java.io.PipedOutputStream;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,7 +20,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.web.servlet.function.RequestPredicates.POST;
 
 
 @WebMvcTest(StudentController.class)
@@ -112,15 +110,13 @@ class StudentControllerTest {
         verify(service, times(1)).updateStudent(any());
     }
 
-
     @Test
-    void 受講生詳細の一覧検索が実行できて空のリストが返ってくること() throws Exception {
-
+    void studentListAPIが使用不可メッセージと400エラーを返すこと() throws Exception {
         mockMvc.perform(get("/studentList"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{}"));
-        verify(service, times(1)).searchStudentList();
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("現在のこのAPIは利用できません。URLは｢studentList｣ではなく｢students｣を利用してください。"));
     }
+
 
     @Test
     void 受講生詳細の例外APIが実行できてステータスが400で返ってくること() throws Exception {
