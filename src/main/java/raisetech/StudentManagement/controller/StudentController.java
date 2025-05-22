@@ -1,15 +1,7 @@
 package raisetech.StudentManagement.controller;
 
 
-
 import io.swagger.v3.oas.annotations.Operation;
-
-
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Size;
-
-
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import raisetech.StudentManagement.domain.StudentDetail;
 import raisetech.StudentManagement.ExceptionHandler.TestException;
+import raisetech.StudentManagement.domain.StudentDetail;
 import raisetech.StudentManagement.service.StudentService;
 
 import java.util.List;
 
 /**
-  *受講生の検索や登録、更新などを行うREST　APIとして受け付けるControllerです。
+ * 受講生の検索や登録、更新などを行うREST　APIとして受け付けるControllerです。
  */
 @Validated
 @RestController
@@ -55,7 +47,7 @@ public class StudentController {
      * 受講生詳細の検索です。
      * IDに紐付く任意の受講生の情報を取得します。
      *
-     * @param id 　受講生ID
+     * @param id 受講生ID
      * @return 受講生
      */
     @GetMapping("/student/{id}")
@@ -70,15 +62,11 @@ public class StudentController {
      * @param studentDetail 受講生詳細
      * @return　実行結果
      */
-    @Operation(summary ="受講生登録", description = "受講生を登録します。")
+    @Operation(summary = "受講生登録", description = "受講生を登録します。")
     @PostMapping("/registerStudent")
-
-    public ResponseEntity<StudentDetail> registerStudent(@RequestBody  StudentDetail studentDetail) {
-   StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
 
     public ResponseEntity<StudentDetail> registerStudent(@RequestBody StudentDetail studentDetail) {
         StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
-
 
 
 //System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
@@ -99,7 +87,6 @@ public class StudentController {
 
         return ResponseEntity.ok("更新処理が成功しました。");
     }
-
 
 
     @ExceptionHandler(TestException.class)
