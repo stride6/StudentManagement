@@ -37,10 +37,9 @@ public class StudentController {
      */
     @Operation(summary = "一覧検索", description = "受講生の一覧を検索します。")
     @GetMapping("/studentList")
-    public List<StudentDetail> getStudentList() throws TestException {
-        // StudentCourses data = new StudentCourses();
-        // studentsCourses.add(data);
-        throw new TestException("現在のこのAPIは利用できません。URLは｢studentList｣ではなく｢students｣を利用してください。");
+    public List<StudentDetail> getStudentList() {
+        //リクエストの処理
+        return service.searchStudentList();
     }
 
     /**
@@ -64,13 +63,9 @@ public class StudentController {
      */
     @Operation(summary = "受講生登録", description = "受講生を登録します。")
     @PostMapping("/registerStudent")
-
     public ResponseEntity<StudentDetail> registerStudent(@RequestBody StudentDetail studentDetail) {
         StudentDetail responseStudentDetail = service.registerStudent(studentDetail);
-
-
 //System.out.println(studentDetail.getStudent().getName() + "さんが新規受講生として登録されました。");
-
         return ResponseEntity.ok(responseStudentDetail);
     }
 
