@@ -38,7 +38,7 @@ public class StudentController {
     @Operation(summary = "一覧検索", description = "受講生の一覧を検索します。")
     @GetMapping("/studentList")
     public List<StudentDetail> getStudentList() {
-        //リクエストの処理
+        System.out.println("★★ 最新の getStudentList 実行！");
         return service.searchStudentList();
     }
 

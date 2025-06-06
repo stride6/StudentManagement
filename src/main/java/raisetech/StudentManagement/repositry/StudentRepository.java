@@ -59,7 +59,7 @@ public interface StudentRepository {
      * @param studentId 　受講生ID
      * @return 受講生IDに紐付く受講生コース情報
      */
-    List<StudentCourse> searchStudentCourse(String studentId);
+    List<StudentCourse> searchStudentCourse(Integer studentId);
 
     /**
      * 受講生情報を新規登録します。IDに関しては自動採番を行う。
@@ -98,3 +98,5 @@ public interface StudentRepository {
     @Update("UPDATE students_courses SET course_name =#{courseName} WHERE id = #{id}")
     void updateStudentCourse(StudentCourse studentCourse);
 }
+
+
